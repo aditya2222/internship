@@ -3,7 +3,7 @@ from django.views.generic import CreateView,TemplateView,ListView,DetailView
 from .forms import UserCreateForm
 from django.urls import reverse_lazy
 from django.contrib.auth.mixins import LoginRequiredMixin
-from .models import mainContent
+from .models import mainContent,Subject,Grade,Topic
 # Create your views here.
 
 
@@ -23,13 +23,12 @@ class SuccessView(TemplateView):
 
 class HomeView( LoginRequiredMixin,ListView):
 	login_url='/login/'
-	model = mainContent
 	template_name = 'webapp/index.html'
 
 	def get_queryset(self):
-		return mainContent.objects.all()
+		return Grade.objects.all()
 
 
 class HomeDetailView(DetailView):
-	model = mainContent
+	model = Topic
 	template_name='webapp/details.html'

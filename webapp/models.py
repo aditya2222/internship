@@ -11,3 +11,29 @@ class mainContent(models.Model):
 	def __str__(self):
 		return self.name
 
+
+
+class Topic(models.Model):
+	question = models.TextField(null=True)
+	answer = models.TextField(null=True)
+
+	def __str__(self):
+		return self.question
+
+
+
+class Subject(models.Model):
+	title = models.CharField(max_length=126,default='title')
+	TopictLinked = models.ManyToManyField(Topic)
+
+	def __str__(self):
+		return self.title
+
+
+
+class Grade(models.Model):
+	GradeName = models.CharField(max_length=126)
+	SubjectLinked = models.ManyToManyField(Subject)
+	def __str__(self):
+		return self.GradeName
+
